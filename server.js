@@ -2,6 +2,7 @@
 
 const express = require('express')
 const path    = require('path')
+const cors = require("cors")
 
 //indicnado folder para produção
 const app = express()
@@ -10,6 +11,7 @@ const staticFileMiddleware = express.static(path.join(__dirname, 'dist'))
 //utilizando modo history do vuejs
 
 app.use(staticFileMiddleware)
+app.use(cors)
 
 //indicando o index.html
 app.get('/', function (req, res) {

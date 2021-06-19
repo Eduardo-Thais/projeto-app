@@ -27,7 +27,11 @@ export default {
     },
     methods: {
          load: function() {
-            axios.get('https://procura-cep-back-end.herokuapp.com/listar')
+            axios.get('https://procura-cep-back-end.herokuapp.com/listar', {
+                headers: {
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
             .then(response => (this.cep = response.data))
             
          }
