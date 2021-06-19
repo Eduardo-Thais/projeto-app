@@ -106,7 +106,7 @@ export default {
         save: function() {
             
             axios
-            .post('http://localhost:8080/cadastrar', this.cepRetorno)
+            .post('https://procura-cep-back-end.herokuapp.com/cadastrar', this.cepRetorno)
             
             
         }

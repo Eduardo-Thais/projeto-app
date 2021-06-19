@@ -106,7 +106,7 @@ export default {
         deletar: function() {
             //Faz a chamada para a API do back-end para excluir as informações do banco
           axios
-          .post('http://localhost:8080/deletaEndereco?codigo=' + this.ceps.id)
+          .post('https://procura-cep-back-end.herokuapp.com/deletaEndereco?codigo=' + this.ceps.id)
           
         },
         edita: function() {
@@ -143,7 +143,7 @@ export default {
 
             //Faz a chamada para a API do back-end para editar as informações do banco
           axios
-          .post('http://localhost:8080/editaEndereco?codigo=' + this.ceps.id, this.cep)
+          .post('https://procura-cep-back-end.herokuapp.com/editaEndereco?codigo=' + this.ceps.id, this.cep)
           
         }
     },

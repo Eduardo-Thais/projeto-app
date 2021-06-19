@@ -27,7 +27,7 @@ export default {
     },
     methods: {
          load: function() {
-            axios.get('http://localhost:8080/listar')
+            axios.get('https://procura-cep-back-end.herokuapp.com/listar')
             .then(response => (this.cep = response.data))
             
          }
