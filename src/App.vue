@@ -19,8 +19,8 @@
       <v-spacer></v-spacer>
       
        <v-tabs grow>
-          <v-tab to="/">Pagina de Busca</v-tab>
-          <v-tab to="/listacep">Pagina de Lista</v-tab>
+          <v-tab to="/">Busca de CEP</v-tab>
+          <v-tab to="/listacep">CEPs salvos</v-tab>
           
         </v-tabs>
       

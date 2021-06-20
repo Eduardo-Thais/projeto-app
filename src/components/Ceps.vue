@@ -79,13 +79,8 @@
             </v-list-item>
 
             <v-card-actions>
-                    <v-btn color="error" @click="deletar" v-on:click=" showExclude = true " >Excluir</v-btn>
-                    <v-btn color="#FF4F33" @click="edita" v-on:click=" showEdit = true ">Editar</v-btn>
-
-                    <v-spacer></v-spacer>
-
-                    <v-alert  border="left"  dense  type="success" color="indigo" v-show="showExclude">Excluido com sucesso</v-alert>
-                    <v-alert  border="left"  dense  type="success" color="indigo" v-show="showEdit">Editado com sucesso</v-alert>
+                    <v-btn color="error" @click="deletar"  >Excluir</v-btn>
+                    <v-btn color="#FF4F33" @click="edita" >Editar</v-btn>
             </v-card-actions>
 
           </v-card>
@@ -98,6 +93,7 @@
 
 <script>
 const axios = require('axios').default;
+const Swal = require('sweetalert2')
 
 export default {
     name: 'Ceps',
@@ -110,8 +106,33 @@ export default {
 
         deletar: function() {
             //Faz a chamada para a API do back-end para excluir as informações do banco
-          axios
-          .post('https://procura-cep-back-end.herokuapp.com/deletaEndereco?codigo=' + this.ceps.id)
+
+            Swal.fire({
+            title: 'Voce quer mesmo excluir?',
+            icon: 'warning',
+            showDenyButton: true,
+            confirmButtonText: `Sim`,
+            denyButtonText: `Não`,
+            }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                .post('https://procura-cep-back-end.herokuapp.com/deletaEndereco?codigo=' + this.ceps.id)
+                Swal.fire({
+                    title: 'Excluido!',
+                    text: 'Seu CEP foi excluido com sucesso', 
+                    icon: 'success',
+                
+                }).then((saveResult)=> {
+                    if (saveResult.isConfirmed){
+                        location.reload();
+                    }
+                })
+            } else if (result.isDenied) {
+                Swal.fire('O CEP não foi excluido', '', 'info')
+            }
+            })
+
+          
           
         },
         edita: function() {
@@ -147,8 +168,33 @@ export default {
 
 
             //Faz a chamada para a API do back-end para editar as informações do banco
-          axios
-          .post('https://procura-cep-back-end.herokuapp.com/editaEndereco?codigo=' + this.ceps.id, this.cep)
+
+            Swal.fire({
+            title: 'Voce quer mesmo editar?',
+            icon: 'warning',
+            showDenyButton: true,
+            confirmButtonText: `Sim`,
+            denyButtonText: `Não`,
+            }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                .post('https://procura-cep-back-end.herokuapp.com/editaEndereco?codigo=' + this.ceps.id, this.cep)
+                Swal.fire({
+                    title: 'Editado!',
+                    text: 'Seu CEP foi editado com sucesso', 
+                    icon: 'success',
+                
+                }).then((saveResult)=> {
+                    if (saveResult.isConfirmed){
+                        location.reload();
+                    }
+                })
+            } else if (result.isDenied) {
+                Swal.fire('O CEP não foi editado', '', 'info')
+            }
+            })
+
+          
           
         }
     },
@@ -177,9 +223,7 @@ export default {
                 localIbge: "",
                 localGia: "",
                 localDdd: "",
-                localSiafi: "" ,
-                showExclude: false,
-                showEdit: false
+                localSiafi: "" 
             
       }
     },

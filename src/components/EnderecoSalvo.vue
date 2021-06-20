@@ -79,9 +79,8 @@
             </v-list-item>
                 <v-card-actions>
                     
-                        <v-btn color="blue" @click="save" v-on:click=" show = true ">Salvar</v-btn>
-                    <v-spacer></v-spacer>
-                        <v-alert  border="left"  dense  type="success" color="indigo" v-show="show">Salvo com sucesso</v-alert>
+                        <v-btn color="blue" @click="save" >Salvar</v-btn>
+                    
                     
                 </v-card-actions>
           </v-card>
@@ -93,6 +92,7 @@
 
 <script>
 const axios = require('axios').default;
+const Swal = require('sweetalert2')
 
 export default {
     name: 'EnderecoSalvo',
@@ -101,18 +101,42 @@ export default {
         cepRetorno: { type: Object[Array], required: true }
     },
     methods: {
+
+       
     
         save: function() {
             
-            axios
-            .post('https://procura-cep-back-end.herokuapp.com/cadastrar', this.cepRetorno)
+            Swal.fire({
+            title: 'Voce quer mesmo salvar?',
+            showDenyButton: true,
+            confirmButtonText: `Sim`,
+            denyButtonText: `Não`,
+            }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                .post('https://procura-cep-back-end.herokuapp.com/cadastrar', this.cepRetorno)
+                Swal.fire({
+                    title: 'Salvo!',
+                    text: 'Seu CEP foi salvo com sucesso', 
+                    icon: 'success',
+                
+                }).then((saveResult)=> {
+                    if (saveResult.isConfirmed){
+                        location.reload();
+                    }
+                })
+            } else if (result.isDenied) {
+                Swal.fire('O CEP não foi salvo', '', 'info')
+            }
+            })
+            
             
             
         }
     },
     data() {
         return {
-            show: false
+            
         }
     },
     
