@@ -79,8 +79,13 @@
             </v-list-item>
 
             <v-card-actions>
-                    <v-btn color="error" @click="deletar"  >Excluir</v-btn>
-                    <v-btn color="orange" @click="edita" >Editar</v-btn>
+                    <v-btn color="error" @click="deletar" v-on:click=" showExclude = true " >Excluir</v-btn>
+                    <v-btn color="orange" @click="edita" v-on:click=" showEdit = true ">Editar</v-btn>
+
+                    <v-spacer></v-spacer>
+
+                    <v-alert  border="left"  dense  type="success" color="indigo" v-show="showExclude">Excluido com sucesso</v-alert>
+                    <v-alert  border="left"  dense  type="success" color="indigo" v-show="showEdit">Editado com sucesso</v-alert>
             </v-card-actions>
 
           </v-card>
@@ -172,7 +177,9 @@ export default {
                 localIbge: "",
                 localGia: "",
                 localDdd: "",
-                localSiafi: "" 
+                localSiafi: "" ,
+                showExclude: "false",
+                showEdit: "false"
             
       }
     },
