@@ -80,7 +80,7 @@
 
             <v-card-actions>
                     <v-btn color="error" @click="deletar" v-on:click=" showExclude = true " >Excluir</v-btn>
-                    <v-btn color="orange" @click="edita" v-on:click=" showEdit = true ">Editar</v-btn>
+                    <v-btn color="#FF4F33" @click="edita" v-on:click=" showEdit = true ">Editar</v-btn>
 
                     <v-spacer></v-spacer>
 
