@@ -178,8 +178,8 @@ export default {
                 localGia: "",
                 localDdd: "",
                 localSiafi: "" ,
-                showExclude: "false",
-                showEdit: "false"
+                showExclude: false,
+                showEdit: false
             
       }
     },
