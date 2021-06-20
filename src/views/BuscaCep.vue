@@ -28,7 +28,7 @@
       <v-col>
                   
             <enderecoSalvo v-show="show" :cepRetorno="cep" />
-            <span v-show="!show"> salvo </span>
+            
       </v-col>
     </v-row>
   </v-container>
