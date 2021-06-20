@@ -169,14 +169,7 @@ export default {
 
             //Faz a chamada para a API do back-end para editar as informações do banco
 
-            Swal.fire({
-            title: 'Voce quer mesmo editar?',
-            icon: 'warning',
-            showDenyButton: true,
-            confirmButtonText: `Sim`,
-            denyButtonText: `Não`,
-            }).then((result) => {
-            if (result.isConfirmed) {
+           
                 axios
                 .post('https://procura-cep-back-end.herokuapp.com/editaEndereco?codigo=' + this.ceps.id, this.cep)
                 Swal.fire({
@@ -189,10 +182,7 @@ export default {
                         location.reload();
                     }
                 })
-            } else if (result.isDenied) {
-                Swal.fire('O CEP não foi editado', '', 'info')
-            }
-            })
+            
 
           
           

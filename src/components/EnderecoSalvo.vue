@@ -106,13 +106,7 @@ export default {
     
         save: function() {
             
-            Swal.fire({
-            title: 'Voce quer mesmo salvar?',
-            showDenyButton: true,
-            confirmButtonText: `Sim`,
-            denyButtonText: `Não`,
-            }).then((result) => {
-            if (result.isConfirmed) {
+            
                 axios
                 .post('https://procura-cep-back-end.herokuapp.com/cadastrar', this.cepRetorno)
                 Swal.fire({
@@ -125,10 +119,8 @@ export default {
                         location.reload();
                     }
                 })
-            } else if (result.isDenied) {
-                Swal.fire('O CEP não foi salvo', '', 'info')
-            }
-            })
+             
+            
             
             
             
