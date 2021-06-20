@@ -12,7 +12,7 @@
           contain
           src="CEPsearch.png"
           transition="scale-transition"
-          width="40"
+          width="80"
         />
       </div>
 
